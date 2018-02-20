@@ -22,17 +22,16 @@
         <li v-for="ingredient in ingredients">
           <!-- The button must have the `active` class if the ingredient is selected -->
           <!-- When the button is clicked, it should toggle the `selected` property of the corresponding ingredient object -->
-          <button
-            :class="[
+          <button @click="ingredient.selected = !ingredient.selected" :class="[
               'btn',
               'btn-' + ingredient.name.replace(' ', '-')
-            ]"
-          >
+            ]">
             <!--
               Define a `capitalize` filter that will take a string as an argument
               and return it with the first letter in uppercase.
               Then use it to format the name of the ingredient.
             -->
+            {{ingredient.name | capitalize}}
           </button>
         </li>
       </ul>
@@ -42,11 +41,14 @@
     <!-- Price -->
     <aside class="panel price">
       <h2>Your pizza's price</h2>
-      <b><!-- Put the base price of the pizza here --> cheese pizza</b>
+      <b>
+        <!-- Put the base price of the pizza here -->cheese pizza</b>
       <ul>
         <!-- List all selected ingredients with their price. Use a computed property. -->
       </ul>
-      <strong><!-- Display the total price. Use a computed property. --></strong>
+      <strong>
+        <!-- Display the total price. Use a computed property. -->
+      </strong>
     </aside>
     <!-- End Price -->
 
@@ -56,49 +58,42 @@
         The following sections should only be shown if the corresponding ingredient is selected.
         Use the `isSelected` method.
       -->
-      <section
-        :class="'green-pepper ingredient-' + n"
-        v-for="n in 21"
-      ></section>
-      <section
-        :class="'mushroom ingredient-' + n"
-        v-for="n in 32"
-      >
-        <div class="cap"></div>
-        <div class="stem"></div>
+      <section>
+        <span v-if="ingredient.selected" :class="'green-pepper ingredient-' + n" v-for="n in 21">
+        </span>
       </section>
-      <section
-        :class="'pepperonni ingredient-' + n"
-        v-for="n in 32"
-      ></section>
+      <section>
+        <span v-if="ingredient.selected" :class=" 'mushroom ingredient-' + n " v-for="n in 32 "></span>
+        <div class="cap "></div>
+        <div class="stem "></div>
+      </section>
+      <section>
+        <span v-if="ingredient.selected" :class=" 'pepperonni ingredient-' + n " v-for="n in 32 "></span>
+      </section>
 
       <!-- Add the `crust-gluten-free` class if the gluten-free crust is selected -->
-      <section :class="{
-        crust: true
-      }">
-        <section class="cheese"></section>
+      <section :class="{ crust: true } ">
+        <section class="cheese "></section>
         <!-- Add the `sauce-white` class if the white sauce is selected -->
-        <section :class="{
-          sauce: true
-        }"></section>
+        <section :class="{ sauce: true } "></section>
       </section>
     </div>
     <!-- End Pizza -->
 
     <!-- Begin Crumbs -->
-    <p id="crumbs">&there4;</p>
+    <p id="crumbs ">&there4;</p>
     <!-- End Crumbs -->
     <!-- Footer -->
     <footer>
       <p>
         This pizza educational experience
         <br /> brought to you by
-        <a href="http://ironhack.com" target="_blank">Ironhack</a>.
+        <a href="http://ironhack.com " target="_blank ">Ironhack</a>.
       </p>
     </footer>
   </div>
 
-  <script src="pizza.js"></script>
+  <script src="pizza.js "></script>
 </body>
 
 </html>
